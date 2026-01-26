@@ -10,6 +10,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/ai-chat-interface/",
   server: {
     host: true,
   },
