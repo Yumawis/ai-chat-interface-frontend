@@ -1,10 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { DeepChat } from "deep-chat-react";
 
-import { ACTIVE_AI_MODEL } from "./config/aiConfig";
-
-const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-
 function App() {
   return (
     <Box
@@ -39,15 +35,9 @@ function App() {
         }}
       >
         <DeepChat
-          connect={{ stream: true }}
-          directConnection={{
-            openRouter: {
-              key: apiKey,
-              chat: {
-                model: ACTIVE_AI_MODEL,
-                max_tokens: 30,
-              },
-            },
+          connect={{
+            url: "http://localhost:5000/chat",
+            method: "POST",
           }}
           style={{
             width: "100%",
