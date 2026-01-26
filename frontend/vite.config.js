@@ -11,6 +11,7 @@ export default defineConfig({
     }),
   ],
   base: "/ai-chat-interface/",
+  build: { outDir: "docs" },
   server: {
     host: true,
   },
