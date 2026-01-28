@@ -96,7 +96,7 @@ OpenRouter API (LLMs)
 ### 1️⃣ Clona el repositorio
 ```bash
 git clone https://github.com/Yumawis/ai-chat-interface.git
-cd ia-chat-interface
+cd ia-chat-interface-frontend
 ```
 
 ### 2️⃣ Instala las dependencias
