@@ -1,6 +1,6 @@
-# 🤖 AI Chat Interface
+# 🤖 AI Chat Interface - Frontend
 
-Aplicación web desarrollada con **React.js** y **Vite.js** (frontend), que permite interactuar con un **chat de inteligencia artificial** mediante el consumo de una API externa. La interfaz está construida con **Material UI**, y el chat se implementa usando el componente **Deep Chat**, el cual permite una alta personalización visual y funcional.
+Aplicación web desarrollada con **React.js** y **Vite.js**, que permite interactuar con un **chat de inteligencia artificial** mediante el consumo de una API externa. La interfaz está construida con **Material UI**, y el chat se implementa usando el componente **Deep Chat**, el cual permite una alta personalización visual y funcional.
 
 La comunicación con los modelos de IA se realiza a través de **Open Router**, utilizando un **backend intermedio** para proteger las credenciales sensibles.
 
