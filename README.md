@@ -1,15 +1,16 @@
 # 🤖 AI Chat Interface
 
-Aplicación web desarrollada con **React.js** y **Vite.js** (solo frontend), que permite interactuar con un **chat de inteligencia artificial** mediante el consumo de una API externa. La interfaz está construida con **Material UI**, y el chat se implementa usando el componente **Deep Chat**, el cual permite una alta personalización visual y funcional.
+Aplicación web desarrollada con **React.js** y **Vite.js** (frontend), que permite interactuar con un **chat de inteligencia artificial** mediante el consumo de una API externa. La interfaz está construida con **Material UI**, y el chat se implementa usando el componente **Deep Chat**, el cual permite una alta personalización visual y funcional.
 
-La **API Key** se genera desde la plataforma **OpenRouter**, que actúa como intermediario para el consumo de modelos de inteligencia artificial.
+La comunicación con los modelos de IA se realiza a través de **Open Router**, utilizando un **backend intermedio** para proteger las credenciales sensibles.
 
 ---
 
 ## 🖼️ Vista previa de la aplicación
 
 <p align="center">
-  <img width="850" height="480" alt="IA Chat App" src="https://github.com/user-attachments/assets/edf9c90c-3e80-4250-a58a-2a5f88be7e83" />
+  <img width="850" height="637" alt="Ia Chat" src="https://github.com/user-attachments/assets/9786fe9a-eaa5-4300-992e-350ee912eceb" />
+
 </p>
 
 ---
@@ -21,6 +22,10 @@ La **API Key** se genera desde la plataforma **OpenRouter**, que actúa como int
 - ⚡ Vite.js
 - 🎨 Material UI
 - 💬 Deep Chat (chat component)
+
+**Backend:**
+- 🟢 Node.js
+- 🚀 Express.js
 
 **Servicios externos:**
 - 🔑 OpenRouter
@@ -43,6 +48,49 @@ Gracias a OpenRouter, la aplicación mantiene una arquitectura **simple, flexibl
 
 ---
 
+## 🚀 Deployment
+
+Para el despliegue de esta aplicación fue necesario **separar el frontend y el backend en repositorios independientes**, siguiendo buenas prácticas de seguridad.
+
+### 🔹 Frontend
+- Desplegado en **GitHub Pages**
+- Aplicación en producción:  
+  🌍 **https://yumawis.github.io/ai-chat-interface-frontend/**
+
+### 🔹 Backend
+- Desarrollado con **Node.js + Express**
+- Desplegado en **Render**
+- Repositorio:  
+  👉 **https://github.com/Yumawis/ai-chat-interface-backend**
+
+---
+
+## 🧠 Arquitectura y decisión técnica
+
+La API de **OpenRouter** requiere una **API Key privada**, la cual **no debe exponerse en el frontend** ni en aplicaciones desplegadas en GitHub Pages.
+
+Por esta razón, se implementó un **backend independiente** que actúa como intermediario entre el frontend y OpenRouter.
+
+### 🔄 Flujo de la aplicación
+
+Frontend (GitHub Pages)
+
+↓
+
+Backend (Express + Render)
+
+↓
+
+OpenRouter API (LLMs)
+
+### Esto permite:
+- 🔒 Mantener la API Key protegida mediante variables de entorno
+- 🌐 Evitar exponer credenciales en el navegador
+- 🔄 Centralizar la lógica de consumo de IA
+- 📦 Escalar o modificar el backend sin afectar el frontend
+
+---
+
 ## 🚀 Instalación y ejecución
 
 ### 1️⃣ Clona el repositorio
@@ -57,19 +105,13 @@ cd frontend
 pnpm install
 ```
 
-### 3️⃣ Configura las variables de entorno
-Crea un archivo **.env** en la carpeta principal del proyecto
+### 3️⃣ Ejecuta el frontend
 ```bash
-VITE_OPENROUTER_API_KEY=tu_api_key_aqui
-```
-La API Key debe generarse previamente desde la plataforma **OpenRouter**.
-
-### 4️⃣ Ejecuta el frontend
-```bash
-cd ../frontend
 pnpm dev
 ```
-Esto iniciará la aplicación React.js (por defecto en `http://localhost:5173`).
+Esto iniciará la aplicación React.js (por defecto en `http://localhost:5173`)
+
+⚠️ Para que el chat funcione correctamente en local, el backend debe estar ejecutándose y configurado con la API Key de OpenRouter.
 
 ---
 
@@ -77,9 +119,10 @@ Esto iniciará la aplicación React.js (por defecto en `http://localhost:5173`).
 
 1. El usuario escribe un mensaje en el campo de texto.
 2. El componente **Deep Chat** gestiona la interfaz y la experiencia del chat. 
-3. El mensaje se envía a la API de Open Router junto con la API Key.
-4. El modelo de inteligencia artificial procesa la solicitud.
-5. La respuesta se muestra en tiempo real dentro del chat.
+3. El mensaje se envía al backend mediante una petición HTTP.
+4. El backend reenvía la solicitud a OpenRouter usando la API Key segura.
+5. El modelo de IA procesa la solicitud.
+6. La respuesta se devuelve al frontend y se muestra en tiempo real.
 
 ---
 
